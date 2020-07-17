@@ -5,7 +5,7 @@ const useNamedEffect = (dependecies = [], evaluator) => {
         if (!evaluator) {
           cb && cb(...dependecies); return;
         }
-        if (typeof evaluator === 'function' && evaluator()) {
+        if (evaluator && evaluator()) {
           cb(...dependecies);
         }
       }, dependecies)
