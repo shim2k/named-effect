@@ -1,6 +1,6 @@
 {
   "name": "named-effect",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Wrapper around React useEffect, in-order to require a name for each effect",
   "author": "shim2k",
   "license": "MIT",
