@@ -1,6 +1,19 @@
-import React from 'react'
-import styles from './styles.module.css'
-
-export const ExampleComponent = ({ text }) => {
-  return <div className={styles.test}>Example Component: {text}</div>
+const useNamedEffect = (dependecies = [], evaluator) => {
+  const namedEffect = function (cb) {
+    try {
+      this(() => {
+        if (!evaluator) {
+          cb && cb(...dependecies); return;
+        }
+        if (typeof evaluator === 'function' && evaluator()) {
+          cb(...dependecies);
+        }
+      }, dependecies)
+    } catch (e) {
+      throw new Error('Make sure to bind useEffect in-order to use namedEffect.');
+    }
+  };
+  return namedEffect;
 }
+
+export default useNamedEffect;

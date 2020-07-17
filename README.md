@@ -1,27 +1,51 @@
 # named-effect
 
-> Wrapper around useEffect in-order to require a name for each effect
-
-[![NPM](https://img.shields.io/npm/v/named-effect.svg)](https://www.npmjs.com/package/named-effect) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+Wrapper around React's useEffect, in-order to require a name for each effect used
 
 ## Install
 
 ```bash
-npm install --save named-effect
+npm install named-effect --save
 ```
 
 ## Usage
 
 ```jsx
+import useNamedEffect from 'named-effect'
+...
+const onLayoutThree = useNamedEffect([stateVariable], () => stateVariable === 3).bind(useEffect)
+
+onVariableIsThree((vnum) => {
+  console.log(`variable is ${vnum}`); // variable is 3
+})
+```
+
+## Example
+
+```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'named-effect'
-import 'named-effect/dist/index.css'
+import useNamedEffect from 'named-effect'
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
+function Example() {
+
+  const [currentLayout, setLayout] = useState(0);
+
+  const onLayoutThree = useNamedEffect([currentLayout], () => currentLayout === 3).bind(useEffect);
+
+  onLayoutThree((lnum) => {
+    console.log(`layout number ${lnum}`); // layout number 3
+  })
+
+  const onLayoutChangeClicked = () => {
+    setLayout(prev => prev+1);
   }
+
+  return (
+    <div className="example">
+      <div onClick={onLayoutChangeClicked}>Change layout</div>
+    </div>
+  );
 }
 ```
 
