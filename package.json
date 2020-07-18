@@ -1,6 +1,6 @@
 {
   "name": "named-effect",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Wrapper around React useEffect, in-order to require a name for each effect",
   "author": "shim2k",
   "license": "MIT",
@@ -23,8 +23,7 @@
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "files": [
     "dist"
   ]
